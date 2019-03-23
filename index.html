@@ -2680,16 +2680,16 @@
         </h2>
         <pre class="idl">
           dictionary AddressInit {
-            DOMString country;
-            sequence&lt;DOMString&gt; addressLine;
-            DOMString region;
-            DOMString city;
-            DOMString dependentLocality;
-            DOMString postalCode;
-            DOMString sortingCode;
-            DOMString organization;
-            DOMString recipient;
-            DOMString phone;
+            DOMString country = "";
+            sequence&lt;DOMString&gt; addressLine = [];
+            DOMString region = "";
+            DOMString city = "";
+            DOMString dependentLocality = "";
+            DOMString postalCode = "";
+            DOMString sortingCode = "";
+            DOMString organization = "";
+            DOMString recipient = "";
+            DOMString phone = "";
           };
         </pre>
         <p>
@@ -2918,13 +2918,12 @@
           </p>
         </div>
         <ol data-link-for="AddressInit">
-          <li>Let <var>details</var> be an <a>AddressInit</a> dictionary with
-          no members present.
+          <li>Let <var>details</var> be a newly created <a>AddressInit</a>
+          dictionary.
           </li>
           <li>If "addressLine" is not in <var>redactList</var>, set
           <var>details</var>["<a>addressLine</a>"] to the result of splitting
-          the user-provided address line into a <a>list</a>. If none was
-          provided, set it to the empty <a>list</a>.
+          the user-provided address line into a <a>list</a>.
             <aside class="note">
               How to split an address line is locale dependent and beyond the
               scope of this specification.
@@ -2932,12 +2931,11 @@
           </li>
           <li>If "country" is not in <var>redactList</var>, set
           <var>details</var>["<a>country</a>"] to the user-provided country as
-          an upper case [[ISO3166-1]] alpha-2 code, or to the empty string if
-          none was provided.
+          an upper case [[ISO3166-1]] alpha-2 code.
           </li>
           <li>If "phone" is not in <var>redactList</var>, set
           <var>details</var>["<a>phone</a>"] to the user-provided phone number,
-          or to the empty string if none was provided.
+          .
             <aside class="note" title="Privacy of phone number">
               <p>
                 To maintain users' privacy, implementers need to be mindful
@@ -2954,16 +2952,16 @@
           </li>
           <li>If "dependentLocality" is not in <var>redactList</var>, set <var>
             details</var>["<a>dependentLocality</a>"] to the user-provided
-            dependent locality, or to the empty string if none was provided.
+            dependent locality.
           </li>
           <li>If "organization" is not in <var>redactList</var>, set
           <var>details</var>["<a>organization</a>"] to the user-provided
-          recipient organization, or to the empty string if none was provided.
+          recipient organization.
           </li>
           <li>If "postalCode" is not in <var>redactList</var>, set
           <var>details</var>["<a>postalCode</a>"] to the user-provided postal
-          code, or to the empty string if none was provided. Optionally, redact
-          part of <var>details</var>["<a>postalCode</a>"].
+          code. Optionally, redact part of
+          <var>details</var>["<a>postalCode</a>"].
             <div class="note" title="Privacy of Postal Codes">
               <p>
                 <a>Postal codes</a> in certain countries can be so specific as
@@ -2979,7 +2977,7 @@
           </li>
           <li>If "recipient" is not in <var>redactList</var>, set
           <var>details</var>["<a>recipient</a>"] to the user-provided recipient
-          of the transaction, or to the empty string if none was provided.
+          of the transaction.
           </li>
           <li>
             <p>
@@ -3000,13 +2998,13 @@
             </p>
             <ol>
               <li>Set <var>details</var>["<a>region</a>"] to the user-provided
-              region, or to the empty string if none was provided.
+              region.
               </li>
             </ol>
           </li>
           <li>If "sortingCode" is not in <var>redactList</var>, set
           <var>details</var>["<a>sortingCode</a>"] to the user-provided sorting
-          code, or to the empty string if none was provided.
+          code.
           </li>
           <li>
             <a data-lt="PaymentAddress.PaymentAddress()">Internally construct a
